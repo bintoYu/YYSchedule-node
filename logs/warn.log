@@ -1,0 +1,736 @@
+11754 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+11754 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+26710 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+26710 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+3537  - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+3537  - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+6191  - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+6207  - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+15482 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+15497 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+30467 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+30467 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+45473 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+45474 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+60477 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+60478 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+75471 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+75472 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+90470 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+90470 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+105464 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+105480 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: org.springframework.jms.IllegalStateException: Connection closed; nested exception is javax.jms.IllegalStateException: Connection closed
+	at org.springframework.jms.support.JmsUtils.convertJmsAccessException(JmsUtils.java:279)
+	at org.springframework.jms.support.JmsAccessor.convertJmsAccessException(JmsAccessor.java:169)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:496)
+	at org.springframework.jms.core.JmsTemplate.browseSelected(JmsTemplate.java:1055)
+	at org.springframework.jms.core.JmsTemplate.browse(JmsTemplate.java:1017)
+	at com.YYSchedule.store.util.ActiveMQUtils.getQueueSize(ActiveMQUtils.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:109)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+Caused by: javax.jms.IllegalStateException: Connection closed
+	at org.apache.activemq.jms.pool.PooledConnection.assertNotClosed(PooledConnection.java:206)
+	at org.apache.activemq.jms.pool.PooledConnection.start(PooledConnection.java:93)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.localStart(SingleConnectionFactory.java:632)
+	at org.springframework.jms.connection.SingleConnectionFactory$SharedConnectionInvocationHandler.invoke(SingleConnectionFactory.java:569)
+	at com.sun.proxy.$Proxy7.start(Unknown Source)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:486)
+	... 14 more
+966   - Exception encountered during context initialization - cancelling refresh attempt
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jmsTemplate' defined in file [D:\ybt\workspace-pc\YYSchedule-nodemanager\target\classes\spring\applicationContext-activemq.xml]: Cannot resolve reference to bean 'cachingConnectionFactory' while setting bean property 'connectionFactory'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cachingConnectionFactory' is defined
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:359)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1469)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:762)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<init>(ApplicationContextHandler.java:8)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<clinit>(ApplicationContextHandler.java:14)
+	at com.YYSchedule.node.test.ActivemqTest1.init(ActivemqTest1.java:34)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'cachingConnectionFactory' is defined
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanDefinition(DefaultListableBeanFactory.java:694)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getMergedLocalBeanDefinition(AbstractBeanFactory.java:1157)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:280)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	... 40 more
+15063 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+15063 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:38)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+13564 - Failed to register node [ 192.168.2.91:7000 ] : Remote host unreachable.
+3174  - Failed to register node [ 192.168.2.91:7000 ] : Invalid method name: 'registerNode'
