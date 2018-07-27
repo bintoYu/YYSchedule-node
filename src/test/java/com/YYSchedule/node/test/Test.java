@@ -4,14 +4,10 @@
 package com.YYSchedule.node.test;
 
 import java.io.File;
-import java.util.Set;
 
 import org.hyperic.sigar.CpuInfo;
-import org.hyperic.sigar.FileSystemMap;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
-
-import com.YYSchedule.common.rpc.domain.node.NodeInfo;
 
 /**
  * @author ybt
@@ -24,7 +20,6 @@ public class Test
 	public static void main(String[] args)
 	{
 		Sigar sigar = new Sigar();
-		NodeInfo nodeInfo = new NodeInfo();
 		String classPath = Test.class.getProtectionDomain().getCodeSource().getLocation().getFile().toString();
 
 		String devName = classPath.substring(classPath.indexOf("/") + 1, classPath.indexOf("/", classPath.indexOf("/") + 1));

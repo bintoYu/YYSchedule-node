@@ -17,18 +17,20 @@
         http://www.springframework.org/schema/util 
         http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-    <context:component-scan base-package="com.winner.spring"/>
+	<util:properties id="config" location="classpath:properties/config.properties"/>
 
-     <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
-        <property name="connectionFactory">
-            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL">
-                    <value>tcp://192.168.1.184:61616</value>
-                </property>
-            </bean>
-        </property>
-        <property name="maxConnections" value="100"></property>
-    </bean> 
+    <bean id="amqConnectionFactory" 
+        class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="#{config.activemq_url}"></property>
+        <property name="userName" value="#{config.activemq_username}"></property>
+        <property name="password" value="#{config.activemq_password}"></property>
+    </bean>
+
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->  
+        <property name="targetConnectionFactory" ref="amqConnectionFactory"></property>
+        <property name="sessionCacheSize" value="100" />
+    </bean>
      
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
@@ -39,5 +41,4 @@
     
     <context:component-scan base-package="com.activemq"></context:component-scan>
 
-	<util:properties id="config" location="classpath:properties/config.properties"/>
 </beans>

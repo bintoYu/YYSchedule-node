@@ -61,20 +61,11 @@ public class ActivemqTest
 		
 		}
 		
-		Context receiveContext;
-		try {
-			receiveContext = ActiveMQUtils.receiveContext(jmsTemplate, queue);
-			System.out.println(receiveContext.toString());
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		long queueSize = ActiveMQUtils.getQueueSize(jmsTemplate, "test");
+		System.out.println(queueSize);
 		
-		try {
-			receiveContext = ActiveMQUtils.receiveContext(jmsTemplate, queue);
-			System.out.println(receiveContext.toString());
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		long queueSize1 = ActiveMQUtils.getQueueSize(jmsTemplate, "test");
+		System.out.println(queueSize1);
 	}
 	
 	@Test
