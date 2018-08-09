@@ -21,6 +21,9 @@ public class Config
 	@Value("#{config.task_phase}")
 	private String task_phase;
 	
+	@Value("#{config.execution_dir}")
+	private String execution_dir;
+	
 	@Value("#{config.rpc_connect_timeout}")
 	private int rpc_connect_timeout;
 	
@@ -29,6 +32,9 @@ public class Config
 	
 	@Value("#{config.max_queue_size}")
 	private int max_queue_size;
+	
+	@Value("#{config.task_consumer_thread_num}")
+	private int task_consumer_thread_num;
 	
 	public String getLocal_listener_domain()
 	{
@@ -55,6 +61,11 @@ public class Config
 		return task_phase;
 	}
 
+	public String getExecution_dir()
+	{
+		return execution_dir;
+	}
+
 	public int getRpc_connect_timeout()
 	{
 		return rpc_connect_timeout;
@@ -68,6 +79,11 @@ public class Config
 	public int getMax_queue_size()
 	{
 		return max_queue_size;
+	}
+
+	public int getTask_consumer_thread_num()
+	{
+		return task_consumer_thread_num;
 	}
 	
 	

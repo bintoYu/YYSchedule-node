@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 
-import com.YYSchedule.common.rpc.domain.container.Context;
+import com.YYSchedule.common.pojo.Task;
 import com.YYSchedule.common.rpc.domain.job.JobPriority;
 import com.YYSchedule.common.rpc.domain.task.TaskPhase;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
@@ -39,25 +39,17 @@ public class ActivemqTest
 	}
 	
 	@Test
-	public void sendContext()
+	public void sendTask()
 	{
 		Long taskId = (long) 1;
 		for(int i = 0; i < 2; i++)
 		{
-			Context context = new Context();
-			context.setTaskId(taskId);
-			context.setPriority(JobPriority.MEDIUM);
-			context.setTaskPhase(TaskPhase.COMMON);
-			context.setProgramId(taskId);
-			context.setProgramName("test");
-			context.setScriptName("test");
-			context.setScriptPath("test");
-			context.setScriptMd5("test");
-			context.setExecutableName("test");
-			context.setExecutablePath("test");
-			context.setExecutableMd5("test");
+			Task task = new Task();
+			task.setTaskId(taskId);
+			task.setTaskPhase(TaskPhase.COMMON);
+
 			taskId++;
-			ActiveMQUtils.sendContext(jmsTemplate, queue, context,JobPriority.HIGHER.getValue());
+			ActiveMQUtils.sendTask(jmsTemplate, queue, task,JobPriority.HIGHER.getValue());
 		
 		}
 		
@@ -68,18 +60,7 @@ public class ActivemqTest
 		System.out.println(queueSize1);
 	}
 	
-	@Test
-	public void receiveContext()
-	{
-		Context receiveContext;
-		try {
-			receiveContext = ActiveMQUtils.receiveContext(jmsTemplate, queue);
-			System.out.println(receiveContext.toString());
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-		
-	}
+
 	
 	@Test
 	public void getQueueSize()
@@ -96,10 +77,10 @@ public class ActivemqTest
 		
 		System.out.println(jmsTemplate.hashCode());
 		
-		Context receiveContext;
+		Task receiveTask;
 		try {
-			receiveContext = ActiveMQUtils.receiveContext(jmsTemplate, queue);
-			System.out.println(receiveContext.toString());
+			receiveTask = ActiveMQUtils.receiveTask(jmsTemplate, queue);
+			System.out.println(receiveTask.toString());
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}

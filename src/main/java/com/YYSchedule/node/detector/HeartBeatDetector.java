@@ -1,30 +1,35 @@
 
 package com.YYSchedule.node.detector;
 
-import java.util.Date;
+import java.text.DecimalFormat;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TTransportException;
-import org.quartz.JobExecutionContext;
+import org.hyperic.sigar.CpuInfo;
+import org.hyperic.sigar.CpuPerc;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
 import org.quartz.JobExecutionException;
-import org.quartz.StatefulJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import com.YYSchedule.common.rpc.domain.node.NodePayload;
+import com.YYSchedule.common.rpc.domain.node.NodeRuntime;
 import com.YYSchedule.common.rpc.domain.task.TaskPhase;
 import com.YYSchedule.common.rpc.exception.InvalidRequestException;
 import com.YYSchedule.common.rpc.exception.TimeoutException;
 import com.YYSchedule.common.rpc.exception.UnavailableException;
 import com.YYSchedule.common.rpc.service.task.NodeCallTaskService;
+import com.YYSchedule.common.utils.RpcUtils;
+import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
+import com.YYSchedule.node.mapper.EngineLoggerMapper;
 import com.YYSchedule.node.queue.Queue;
-import com.YYSchedule.node.service.NodeService;
-import com.YYSchedule.node.utils.RpcUtils;
 import com.YYSchedule.store.util.ActiveMQUtils;
 /**
  * 
@@ -43,7 +48,7 @@ public class HeartBeatDetector implements Runnable {
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
-
+	
 	/**
 	 * 使用quartz定时执行execute方法
 	 * @throws JobExecutionException
@@ -104,11 +109,16 @@ public class HeartBeatDetector implements Runnable {
 		// init payload id info
 		nodePayload.setNodeId(nodeId);
 		
-		nodePayload.setNodeRuntime(NodeService.getNodeRuntime());
+		nodePayload.setNodeRuntime(getNodeRuntime());
 		nodePayload.setQueueLimit(config.getMax_queue_size());
 		nodePayload.setQueueLength(ActiveMQUtils.getQueueSize(jmsTemplate, queue.getEquippedContextQueueName()));
 		nodePayload.setExpectedDelay(queue.getContextQueueExpectedDelay(jmsTemplate));
 		nodePayload.setTaskPhase(TaskPhase.valueOf(config.getTask_phase()));
+		
+		//存放当前正在执行引擎的日志信息
+		ApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();
+		EngineLoggerMapper engineLoggerMapper = applicationContext.getBean(EngineLoggerMapper.class);
+		nodePayload.setEngineLoggerList(engineLoggerMapper.getAllEngineLogger());
 		
 		return nodePayload;
 	}
@@ -133,5 +143,46 @@ public class HeartBeatDetector implements Runnable {
 					+ config.getNode_call_task_port() + " ]");
 		}
 		RpcUtils.close(nodeCallTaskService);
+	}
+	
+	/**
+	 * 通过sigar获得node的runtime信息
+	 * 
+	 * @return NodeRuntime
+	 */
+	public NodeRuntime getNodeRuntime() {
+
+		Sigar sigar = new Sigar();
+		NodeRuntime nodeRuntime = new NodeRuntime();
+
+		try {
+			//获取cpu信息
+			int cpuCount = sigar.getCpuInfoList().length;
+			CpuInfo cpuInfo = sigar.getCpuInfoList()[0];
+			nodeRuntime.setCpuCount(cpuCount);
+			nodeRuntime.setCpuCores(cpuInfo.getTotalCores());
+			nodeRuntime.setCpuMhz(cpuInfo.getMhz());
+
+			CpuPerc cpuPerc = sigar.getCpuPerc();
+			double cpuUsedPerc = 0;
+			if (cpuPerc.getCombined() == 0) {
+				cpuUsedPerc = 0;
+			} else {
+				cpuUsedPerc = Double.parseDouble(new DecimalFormat("#.00").format(cpuPerc.getCombined() * 100));
+			}
+			nodeRuntime.setCpuUsedPerc(cpuUsedPerc);
+			
+			//获取剩余空间
+			nodeRuntime.setFreeMem(sigar.getMem().getFree() / 1024 / 1024);
+			nodeRuntime.setJvmFreeMem(Runtime.getRuntime().freeMemory() / 1024 / 1024);
+
+		} catch (SigarException se) {
+			throw new RuntimeException("Failed to get node heart beat [ " + nodeRuntime + " ] : " + se.getMessage(), se);
+		} finally {
+			sigar.close();
+			sigar = null;
+		}
+
+		return nodeRuntime;
 	}
 }

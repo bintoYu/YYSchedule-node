@@ -15,10 +15,11 @@ import com.YYSchedule.common.rpc.exception.InvalidRequestException;
 import com.YYSchedule.common.rpc.exception.TimeoutException;
 import com.YYSchedule.common.rpc.exception.UnavailableException;
 import com.YYSchedule.common.rpc.service.task.NodeCallTaskService;
+import com.YYSchedule.common.utils.RpcUtils;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
+import com.YYSchedule.node.consumer.TaskConsumer;
 import com.YYSchedule.node.detector.HeartBeatDetector;
-import com.YYSchedule.node.utils.RpcUtils;
 
 /**
  * @author ybt
@@ -64,7 +65,7 @@ public class StartUp
 		} catch (UnavailableException e) {
 			LOGGER.error("Failed to register node [ " + nodePayload.getNodeId() + " ] : " + e.getMessage());
 		} catch (TimeoutException e) {
-			LOGGER.error("Failed to register node [ " + nodePayload.getNodeId() + " ] : " + e.getMessage());
+			LOGGER.error ("Failed to register node [ " + nodePayload.getNodeId() + " ] : " + e.getMessage());
 		} catch (TException e) {
 			LOGGER.error("Failed to register node [ " + nodePayload.getNodeId() + " ] : " + e.getMessage());
 		} finally {
@@ -72,12 +73,22 @@ public class StartUp
 		}
 	}
 	
+	public void reportHeartBeat()
+	{
+		new ClassPathXmlApplicationContext("classpath:spring/quartz.xml","classpath:spring/applicationContext-activemq.xml","classpath:spring/applicationContext-component.xml");
+	}
+	
+	public void startConsumer(AbstractApplicationContext applicationContext)
+	{
+		applicationContext.getBean(TaskConsumer.class).startThreadPool();
+	}
 	
 	public static void main(String[] args)
 	{
 		AbstractApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();
 		StartUp startUp = new StartUp(applicationContext);
 		startUp.registerNode();
-		
+		startUp.reportHeartBeat();
+		startUp.startConsumer(applicationContext);
 	}
 }

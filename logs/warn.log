@@ -926,3 +926,178 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:949)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:530)
 	... 16 more
+10267 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:35)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+10273 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:35)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+15162 - Job DEFAULT.HeartBeatDetectorJob threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:35)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+15165 - Job (DEFAULT.HeartBeatDetectorJob threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'execute' on target class [class com.YYSchedule.node.detector.HeartBeatDetector] failed; nested exception is java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:266)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.UnsatisfiedLinkError: org.hyperic.sigar.Sigar.getCpuInfoList()[Lorg/hyperic/sigar/CpuInfo;
+	at org.hyperic.sigar.Sigar.getCpuInfoList(Native Method)
+	at com.YYSchedule.node.service.NodeService.getNodeRuntime(NodeService.java:35)
+	at com.YYSchedule.node.detector.HeartBeatDetector.generateHeartBeat(HeartBeatDetector.java:107)
+	at com.YYSchedule.node.detector.HeartBeatDetector.execute(HeartBeatDetector.java:52)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:269)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:257)
+	... 3 more
+12239 - Failed to register node [ 192.168.2.91:7000 ] : Remote host unreachable.
+11106494 - 下载文件 [ /yubingtao/1/3.txt ] 失败！尝试重新连接ftp服务器...Failed to list file : /yubingtao/1/3.txt : Read timed out
+com.YYSchedule.store.exception.FtpException: Failed to list file : /yubingtao/1/3.txt : Read timed out
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:289)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.download(TaskConsumerThread.java:117)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.run(TaskConsumerThread.java:88)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:283)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:325)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:177)
+	at java.io.InputStreamReader.read(InputStreamReader.java:184)
+	at java.io.BufferedReader.fill(BufferedReader.java:154)
+	at java.io.BufferedReader.read(BufferedReader.java:175)
+	at org.apache.commons.net.io.CRLFLineReader.readLine(CRLFLineReader.java:58)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:314)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:294)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:483)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:608)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:582)
+	at org.apache.commons.net.ftp.FTP.pasv(FTP.java:1007)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:869)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:759)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3293)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3271)
+	at org.apache.commons.net.ftp.FTPClient.listFiles(FTPClient.java:2930)
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:287)
+	... 5 more
+11106590 - 下载文件 [ /yubingtao/1/2.txt ] 失败！尝试重新连接ftp服务器...Failed to list file : /yubingtao/1/2.txt : Read timed out
+com.YYSchedule.store.exception.FtpException: Failed to list file : /yubingtao/1/2.txt : Read timed out
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:289)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.download(TaskConsumerThread.java:117)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.run(TaskConsumerThread.java:88)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:283)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:325)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:177)
+	at java.io.InputStreamReader.read(InputStreamReader.java:184)
+	at java.io.BufferedReader.fill(BufferedReader.java:154)
+	at java.io.BufferedReader.read(BufferedReader.java:175)
+	at org.apache.commons.net.io.CRLFLineReader.readLine(CRLFLineReader.java:58)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:314)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:294)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:483)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:608)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:582)
+	at org.apache.commons.net.ftp.FTP.pasv(FTP.java:1007)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:869)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:759)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3293)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3271)
+	at org.apache.commons.net.ftp.FTPClient.listFiles(FTPClient.java:2930)
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:287)
+	... 5 more
+11106590 - 下载文件 [ /yubingtao/1/1.txt ] 失败！尝试重新连接ftp服务器...Failed to list file : /yubingtao/1/1.txt : Read timed out
+com.YYSchedule.store.exception.FtpException: Failed to list file : /yubingtao/1/1.txt : Read timed out
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:289)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.download(TaskConsumerThread.java:117)
+	at com.YYSchedule.node.consumer.TaskConsumerThread.run(TaskConsumerThread.java:88)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:283)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:325)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:177)
+	at java.io.InputStreamReader.read(InputStreamReader.java:184)
+	at java.io.BufferedReader.fill(BufferedReader.java:154)
+	at java.io.BufferedReader.read(BufferedReader.java:175)
+	at org.apache.commons.net.io.CRLFLineReader.readLine(CRLFLineReader.java:58)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:314)
+	at org.apache.commons.net.ftp.FTP.__getReply(FTP.java:294)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:483)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:608)
+	at org.apache.commons.net.ftp.FTP.sendCommand(FTP.java:582)
+	at org.apache.commons.net.ftp.FTP.pasv(FTP.java:1007)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:869)
+	at org.apache.commons.net.ftp.FTPClient._openDataConnection_(FTPClient.java:759)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3293)
+	at org.apache.commons.net.ftp.FTPClient.initiateListParsing(FTPClient.java:3271)
+	at org.apache.commons.net.ftp.FTPClient.listFiles(FTPClient.java:2930)
+	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:287)
+	... 5 more
