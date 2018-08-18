@@ -112,8 +112,8 @@ public class HeartBeatDetector implements Runnable {
 		nodePayload.setNodeRuntime(getNodeRuntime());
 		nodePayload.setQueueLimit(config.getMax_queue_size());
 		nodePayload.setQueueLength(ActiveMQUtils.getQueueSize(jmsTemplate, queue.getEquippedContextQueueName()));
-		nodePayload.setExpectedDelay(queue.getContextQueueExpectedDelay(jmsTemplate));
 		nodePayload.setTaskPhase(TaskPhase.valueOf(config.getTask_phase()));
+		nodePayload.setConsumerThreadNum(config.getTask_consumer_thread_num());
 		
 		//存放当前正在执行引擎的日志信息
 		ApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();
@@ -156,13 +156,7 @@ public class HeartBeatDetector implements Runnable {
 		NodeRuntime nodeRuntime = new NodeRuntime();
 
 		try {
-			//获取cpu信息
-			int cpuCount = sigar.getCpuInfoList().length;
-			CpuInfo cpuInfo = sigar.getCpuInfoList()[0];
-			nodeRuntime.setCpuCount(cpuCount);
-			nodeRuntime.setCpuCores(cpuInfo.getTotalCores());
-			nodeRuntime.setCpuMhz(cpuInfo.getMhz());
-
+			//获取cpu占用率
 			CpuPerc cpuPerc = sigar.getCpuPerc();
 			double cpuUsedPerc = 0;
 			if (cpuPerc.getCombined() == 0) {

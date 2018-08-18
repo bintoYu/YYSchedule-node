@@ -5,6 +5,11 @@ package com.YYSchedule.node.start;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TServerTransport;
+import org.apache.thrift.transport.TTransportException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -14,12 +19,14 @@ import com.YYSchedule.common.rpc.domain.node.NodePayload;
 import com.YYSchedule.common.rpc.exception.InvalidRequestException;
 import com.YYSchedule.common.rpc.exception.TimeoutException;
 import com.YYSchedule.common.rpc.exception.UnavailableException;
+import com.YYSchedule.common.rpc.service.node.EngineCallNodeService;
 import com.YYSchedule.common.rpc.service.task.NodeCallTaskService;
 import com.YYSchedule.common.utils.RpcUtils;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
 import com.YYSchedule.node.consumer.TaskConsumer;
 import com.YYSchedule.node.detector.HeartBeatDetector;
+import com.YYSchedule.node.service.impl.EngineCallNodeServiceImpl;
 
 /**
  * @author ybt
@@ -45,7 +52,7 @@ public class StartUp
 	/**
 	 * register node to taskmanager
 	 */
-	public void registerNode() {	
+	private void registerNode() {	
 		
 		NodePayload nodePayload = applicationContext.getBean(HeartBeatDetector.class).generateHeartBeat();
 		
@@ -73,14 +80,43 @@ public class StartUp
 		}
 	}
 	
-	public void reportHeartBeat()
+	private void reportHeartBeat()
 	{
 		new ClassPathXmlApplicationContext("classpath:spring/quartz.xml","classpath:spring/applicationContext-activemq.xml","classpath:spring/applicationContext-component.xml");
 	}
 	
-	public void startConsumer(AbstractApplicationContext applicationContext)
+	private void startConsumer(AbstractApplicationContext applicationContext)
 	{
 		applicationContext.getBean(TaskConsumer.class).startThreadPool();
+	}
+	
+	private void startEngineCallNodeService()
+	{
+		new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				startUpEngineCallNodeService();
+			}
+			
+			public void startUpEngineCallNodeService()
+			{
+				try {
+					final TServerTransport serverTransport 
+					= new TServerSocket(config.getEngine_call_node_port());
+					final EngineCallNodeService.Processor<EngineCallNodeService.Iface> processor
+					= new EngineCallNodeService.Processor<EngineCallNodeService.Iface>(new EngineCallNodeServiceImpl());
+					final TServer server 
+					= new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
+					LOGGER.info("EngineCallNode Server start listening on port : [ " + config.getEngine_call_node_port() + " ]...");
+					server.serve();
+				} catch (TTransportException tte) {
+					LOGGER.error("Failed to startup EngineCallNode Server at port : " + config.getEngine_call_node_port() + " : " + tte.getMessage(), tte);
+					throw new RuntimeException("Failed to startup EngineCallNode Server at port : " + config.getEngine_call_node_port() + " : " + tte.getMessage(), tte);
+				}
+			}
+		}).start();
 	}
 	
 	public static void main(String[] args)
@@ -90,5 +126,6 @@ public class StartUp
 		startUp.registerNode();
 		startUp.reportHeartBeat();
 		startUp.startConsumer(applicationContext);
+		startUp.startEngineCallNodeService();
 	}
 }

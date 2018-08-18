@@ -11,6 +11,9 @@ public class Config
 	
 	@Value("#{config.task_call_node_port}")
 	private int task_call_node_port;
+	
+	@Value("#{config.engine_call_node_port}")
+	private int engine_call_node_port;
 
 	@Value("#{config.taskmanager_listener_domain}")
 	private String taskmanager_listener_domain;	
@@ -51,6 +54,11 @@ public class Config
 		return taskmanager_listener_domain;
 	}
 	
+	public int getEngine_call_node_port()
+	{
+		return engine_call_node_port;
+	}
+
 	public int getNode_call_task_port()
 	{
 		return node_call_task_port;

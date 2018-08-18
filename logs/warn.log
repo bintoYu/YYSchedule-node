@@ -1101,3 +1101,57 @@ Caused by: java.net.SocketTimeoutException: Read timed out
 	at org.apache.commons.net.ftp.FTPClient.listFiles(FTPClient.java:2930)
 	at com.YYSchedule.store.ftp.FtpUtils.isFileExist(FtpUtils.java:287)
 	... 5 more
+2442054 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+2442147 - Duplicate non transacted dispatch to consumer: ID:WIN-V37432DEA0C-65367-1533864335039-1:1:3:1, poison acking: MessageDispatch {commandId = 0, responseRequired = false, consumerId = ID:WIN-V37432DEA0C-65367-1533864335039-1:1:3:1, destination = queue://192.168.2.91:7000:distributeTaskQueue, message = ActiveMQObjectMessage {commandId = 14, responseRequired = true, messageId = ID:WIN-V37432DEA0C-53163-1533864421335-1:1:4:1:2, originalDestination = null, originalTransactionId = null, producerId = ID:WIN-V37432DEA0C-53163-1533864421335-1:1:4:1, destination = queue://192.168.2.91:7000:distributeTaskQueue, transactionId = null, expiration = 0, timestamp = 1533866775030, arrival = 0, brokerInTime = 1533866829210, brokerOutTime = 1533866829284, correlationId = null, replyTo = null, persistent = true, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@1c6b7657, marshalledProperties = null, dataStructure = null, redeliveryCounter = 2, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false}, redeliveryCounter = 2}
+17241 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+171850 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+2484  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2504  - Failed to register node [ 192.168.2.91:7000 ] : null
+1898  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1898  - Failed to register node [ 192.168.2.91:7000 ] : null
+7963  - Failed to report node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1944  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1944  - Failed to register node [ 192.168.2.91:7000 ] : null
+6917  - Failed to register node [ 192.168.2.91:7000 ] : java.net.SocketTimeoutException: Read timed out
+6999  - Failed to register node [ 192.168.2.91:7000 ] : java.net.SocketTimeoutException: Read timed out
+6970  - Failed to register node [ 192.168.2.91:7000 ] : java.net.SocketTimeoutException: Read timed out
+6917  - Failed to register node [ 192.168.2.91:7000 ] : java.net.SocketTimeoutException: Read timed out
+7014  - Failed to register node [ 192.168.2.91:7000 ] : java.net.SocketTimeoutException: Read timed out
+1903  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1903  - Failed to register node [ 192.168.2.91:7000 ] : null
+3922  - Failed to report node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1949  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1949  - Failed to register node [ 192.168.2.91:7000 ] : null
+2111  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2111  - Failed to register node [ 192.168.2.91:7000 ] : null
+1913  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1913  - Failed to register node [ 192.168.2.91:7000 ] : null
+2175  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2190  - Failed to register node [ 192.168.2.91:7000 ] : null
+2066  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2066  - Failed to register node [ 192.168.2.91:7000 ] : null
+1975  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1978  - Failed to register node [ 192.168.2.91:7000 ] : null
+2001  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2001  - Failed to register node [ 192.168.2.91:7000 ] : null
+1934  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1937  - Failed to register node [ 192.168.2.91:7000 ] : null
+12130 - Failed to register node [ 192.168.2.91:7000 ] : Remote host unreachable.
+12251 - Failed to register node [ 192.168.2.91:7000 ] : Remote host unreachable.
+12723 - Failed to startup EngineCallNode Server at port : 7010 : Could not create ServerSocket on address 0.0.0.0/0.0.0.0:7010.
+org.apache.thrift.transport.TTransportException: Could not create ServerSocket on address 0.0.0.0/0.0.0.0:7010.
+	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:109)
+	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:91)
+	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:83)
+	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:76)
+	at com.YYSchedule.node.start.StartUp$1.startUpEngineCallNodeService(StartUp.java:107)
+	at com.YYSchedule.node.start.StartUp$1.run(StartUp.java:100)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: java.net.BindException: Address already in use: JVM_Bind
+	at java.net.DualStackPlainSocketImpl.bind0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketBind(DualStackPlainSocketImpl.java:106)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:376)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:190)
+	at java.net.ServerSocket.bind(ServerSocket.java:376)
+	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:106)
+	... 6 more
