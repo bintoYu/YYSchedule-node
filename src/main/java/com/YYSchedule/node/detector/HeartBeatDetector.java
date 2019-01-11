@@ -6,7 +6,6 @@ import java.text.DecimalFormat;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TTransportException;
-import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
@@ -29,7 +28,6 @@ import com.YYSchedule.common.utils.RpcUtils;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
 import com.YYSchedule.node.mapper.EngineLoggerMapper;
-import com.YYSchedule.node.queue.Queue;
 import com.YYSchedule.store.util.ActiveMQUtils;
 /**
  * 
@@ -48,6 +46,7 @@ public class HeartBeatDetector implements Runnable {
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
+
 	
 	/**
 	 * 使用quartz定时执行execute方法
@@ -104,14 +103,14 @@ public class HeartBeatDetector implements Runnable {
 	public NodePayload generateHeartBeat() {
 		NodePayload nodePayload = new NodePayload();
 		String nodeId = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port();
-		Queue queue = new Queue(nodeId);
+		String distributeTaskQueue = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port() + ":" + "distributeTaskQueue";
 		
 		// init payload id info
 		nodePayload.setNodeId(nodeId);
 		
 		nodePayload.setNodeRuntime(getNodeRuntime());
 		nodePayload.setQueueLimit(config.getMax_queue_size());
-		nodePayload.setQueueLength(ActiveMQUtils.getQueueSize(jmsTemplate, queue.getEquippedContextQueueName()));
+		nodePayload.setQueueLength(ActiveMQUtils.getQueueSize(jmsTemplate, distributeTaskQueue));
 		nodePayload.setTaskPhase(TaskPhase.valueOf(config.getTask_phase()));
 		nodePayload.setConsumerThreadNum(config.getTask_consumer_thread_num());
 		

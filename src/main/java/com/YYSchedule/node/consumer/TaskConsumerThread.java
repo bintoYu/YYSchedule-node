@@ -7,14 +7,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import javax.jms.Connection;
 import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
 
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jms.JmsException;
 import org.springframework.jms.core.JmsTemplate;
 
 import com.YYSchedule.common.pojo.Result;
@@ -27,7 +29,8 @@ import com.YYSchedule.node.config.Config;
 import com.YYSchedule.node.process.ProcessResult;
 import com.YYSchedule.store.ftp.FtpConnFactory;
 import com.YYSchedule.store.ftp.FtpUtils;
-import com.YYSchedule.store.util.ActiveMQUtils;
+import com.YYSchedule.store.util.ActiveMQUtils_nospring;
+import com.YYSchedule.store.util.QueueConnectionFactory;
 
 /**
  * @author ybt
@@ -41,15 +44,25 @@ public class TaskConsumerThread implements Runnable
 	
 	private String nodeId;
 	
-	private String distributeTaskQueue;
-	
 	private JmsTemplate jmsTemplate;
 	
 	private FtpConnFactory ftpConnFactory;
 	
 	private Config config;
 	
-	private FTPClient ftpClient;
+	//activemq
+	private Connection activemqConnection;
+	
+	private Session activemqSession;
+	
+	private MessageConsumer taskConsumer;
+	
+	private MessageProducer resultProducer;
+	
+	private String resultQueue;
+	
+	private String distributeTaskQueue;
+	
 	
 	/**
 	 * @param distributeTaskQueue
@@ -63,18 +76,24 @@ public class TaskConsumerThread implements Runnable
 		this.ftpConnFactory = ftpConnFactory;
 		this.nodeId = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port();
 		this.distributeTaskQueue = nodeId + ":" + "distributeTaskQueue";
-		this.ftpClient = ftpConnFactory.connect();
+		this.resultQueue = config.getTaskmanager_listener_domain() + ":" + "resultQueue"; 
+		this.activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
+		this.activemqSession = QueueConnectionFactory.createSession(activemqConnection);
+		this.taskConsumer = QueueConnectionFactory.createConsumer(activemqSession, distributeTaskQueue);
+		this.resultProducer = QueueConnectionFactory.createProducer(activemqSession, resultQueue);
 	}
 	
 	@Override
 	public void run()
 	{
+		LOGGER.info("开启线程" + Thread.currentThread().getName() + "..........");
 		while (!Thread.currentThread().isInterrupted()) {
 			
 			Task task = null;
 			try {
 				// 从队列distributeTaskQueue取出task
-				task = ActiveMQUtils.receiveTask(jmsTemplate, distributeTaskQueue);
+//				task = ActiveMQUtils.receiveTask(jmsTemplate, distributeTaskQueue);
+				task = ActiveMQUtils_nospring.receiveTask(taskConsumer, distributeTaskQueue);
 			} catch (JMSException e) {
 				task.setTaskStatus(TaskStatus.ACCEPT_FAILED);
 				LOGGER.error("从队列" + distributeTaskQueue + "取Task失败！" + e.getMessage());
@@ -90,23 +109,34 @@ public class TaskConsumerThread implements Runnable
 				// 下载文件到本地
 				String localFilePath = download(task.getFileName(), task.getTaskId());
 				
-				// 执行task
-				CommandHandler commandHandler = new CommandHandler(config);
-				ProcessResult result = null;
-				try {
-					result = commandHandler.launch(task, localFilePath);
-				} catch (ExecutionException e) {
-					LOGGER.error("无法执行task [ " + task.getTaskId() + " ]");
-				}
-				
-				/**
-				 * 当程序执行中断或者超时，程序并不会调用接口向任务节点node返结果,控制节点便无法获知任务执行情况
-				 * 因此需要在此由任务节点直接返回失败结果给控制节点
-				 */
-				if(result.getTaskStatus() != TaskStatus.FINISHED)
+				if(localFilePath != null)
 				{
-					//向控制节点taskmanager发送失败任务
-					transferFailureResult(task.getTaskId(),result.getTaskStatus());
+					LOGGER.info("下载文件" + localFilePath + "成功！");
+					
+					// 执行task
+					CommandHandler commandHandler = new CommandHandler(config);
+					ProcessResult result = null;
+					try {
+						result = commandHandler.launch(task, localFilePath);
+					} catch (ExecutionException e) {
+						LOGGER.error("无法执行task [ " + task.getTaskId() + " ]");
+					}
+				
+					/**
+					 * 当程序执行中断或者超时，程序并不会调用接口向任务节点node返结果,控制节点便无法获知任务执行情况
+					 * 因此需要在此由任务节点直接返回失败结果给控制节点
+					 */
+					if(result.getTaskStatus() != TaskStatus.FINISHED)
+					{
+						//向控制节点taskmanager发送失败任务
+						transferFailureResult(task.getTaskId(),result.getTaskStatus());
+					}
+				}
+				else
+				{
+					LOGGER.info("task[" + task.getTaskId() + "]" + "无文件可下载！");
+					task.setTaskStatus(TaskStatus.FAILURE);
+					reportTaskStatus(task);
 				}
 			}
 		}
@@ -114,9 +144,10 @@ public class TaskConsumerThread implements Runnable
 	
 	private String download(String remoteFilePath, long taskId)
 	{
-		
+		FTPClient ftpClient = null;
 		String localFilePath = null;
-		for (int tryTime = 0; tryTime <= 2 && (localFilePath == null || !new File(localFilePath).exists()); tryTime++) {
+		for (int tryTime = 0; tryTime <= 2 && (localFilePath == null || !new File(localFilePath).exists()); tryTime++) 
+		{
 			try {
 				if (ftpClient == null || !ftpClient.isConnected() || !ftpClient.isAvailable()) {
 					ftpClient = ftpConnFactory.connect();
@@ -128,6 +159,7 @@ public class TaskConsumerThread implements Runnable
 						LOGGER.error("下载文件 [ " + remoteFilePath + " ] 失败！ 文件未存在！");
 					}
 					file = null;
+					break;
 				}
 			} catch (Exception e) {
 				LOGGER.error("下载文件 [ " + remoteFilePath + " ] 失败！尝试重新连接ftp服务器..." + e.getMessage(), e);
@@ -145,6 +177,17 @@ public class TaskConsumerThread implements Runnable
 					ftpClient = null;
 					LOGGER.error("无法连接ftp服务器 [ " + ftpConnFactory.getFtpHost() + " ] : " + e1.getMessage(), e1);
 				}
+			}
+		}
+		
+		if(ftpClient.isConnected())
+		{
+			try
+			{
+				ftpClient.disconnect();
+			} catch (IOException e)
+			{
+				e.printStackTrace();
 			}
 		}
 		return localFilePath;
@@ -165,21 +208,22 @@ public class TaskConsumerThread implements Runnable
 
 	private void transferFailureResult(long taskId, TaskStatus taskStatus)
 	{
-			Result resultPojo = new Result();
-			resultPojo.setTaskId(taskId);
-			resultPojo.setFinishedTime(System.currentTimeMillis());
-			resultPojo.setNodeId(nodeId);
-			resultPojo.setTaskStatus(taskStatus);
-			String resultQueue = config.getTaskmanager_listener_domain() + ":" + "resultQueue";
-			try
-			{
-				ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
-			}
-			catch(JmsException jmsException)
-			{
-				LOGGER.error("result [ " + taskId + " ] 放入队列resultQueue失败！" + jmsException.getMessage());
-			}
-			LOGGER.info("result [ " + taskId + " ] 已放入队列resultQueue中.");
+		Result resultPojo = new Result();
+		resultPojo.setTaskId(taskId);
+		resultPojo.setFinishedTime(System.currentTimeMillis());
+		resultPojo.setNodeId(nodeId);
+		resultPojo.setTaskStatus(taskStatus);
+		 
+		try
+		{
+//			ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
+			ActiveMQUtils_nospring.sendResult(resultPojo, activemqSession, resultProducer, resultQueue);
 		}
+		catch(JMSException jmsException)
+		{
+			LOGGER.error("失败信息 [ " + taskId + " ] 放入队列resultQueue失败！" + jmsException.getMessage());
+		}
+		LOGGER.info("失败信息 [ " + taskId + " ] 已放入队列resultQueue中.");
+	}
 	
 }

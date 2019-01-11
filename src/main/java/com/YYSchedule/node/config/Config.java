@@ -39,6 +39,9 @@ public class Config
 	@Value("#{config.task_consumer_thread_num}")
 	private int task_consumer_thread_num;
 	
+	@Value("#{config.activemq_url}")
+	private String activemq_url;
+	
 	public String getLocal_listener_domain()
 	{
 		return local_listener_domain;
@@ -92,6 +95,11 @@ public class Config
 	public int getTask_consumer_thread_num()
 	{
 		return task_consumer_thread_num;
+	}
+
+	public String getActivemq_url()
+	{
+		return activemq_url;
 	}
 	
 	

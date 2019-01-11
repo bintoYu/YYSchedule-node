@@ -53,6 +53,14 @@ public class StartUp
 	 * register node to taskmanager
 	 */
 	private void registerNode() {	
+		//暂停0.5秒，确保spring日志先打完再注册
+		try
+		{
+			Thread.sleep(500);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 		
 		NodePayload nodePayload = applicationContext.getBean(HeartBeatDetector.class).generateHeartBeat();
 		
@@ -123,6 +131,7 @@ public class StartUp
 	{
 		AbstractApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();
 		StartUp startUp = new StartUp(applicationContext);
+		
 		startUp.registerNode();
 		startUp.reportHeartBeat();
 		startUp.startConsumer(applicationContext);

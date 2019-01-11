@@ -28,7 +28,7 @@ public class ActivemqTest
 	
 	private JmsTemplate jmsTemplate;
 	
-	private String queue = "test";
+	private String queue = "192.168.101.51:7000:distributeTaskQueue";
 	
 	@Before
 	public void init()
@@ -38,47 +38,47 @@ public class ActivemqTest
 		jmsTemplate = (JmsTemplate) applicationContext.getBean("jmsTemplate");
 	}
 	
-	@Test
-	public void sendTask()
-	{
-		Long taskId = (long) 1;
-		for(int i = 0; i < 2; i++)
-		{
-			Task task = new Task();
-			task.setTaskId(taskId);
-			task.setTaskPhase(TaskPhase.COMMON);
-
-			taskId++;
-			ActiveMQUtils.sendTask(jmsTemplate, queue, task,JobPriority.HIGHER.getValue());
-		
-		}
-		
-		long queueSize = ActiveMQUtils.getQueueSize(jmsTemplate, "test");
-		System.out.println(queueSize);
-		
-		long queueSize1 = ActiveMQUtils.getQueueSize(jmsTemplate, "test");
-		System.out.println(queueSize1);
-	}
+//	@Test
+//	public void sendTask()
+//	{
+//		Long taskId = (long) 1;
+//		for(int i = 0; i < 2; i++)
+//		{
+//			Task task = new Task();
+//			task.setTaskId(taskId);
+//			task.setTaskPhase(TaskPhase.COMMON);
+//
+//			taskId++;
+//			ActiveMQUtils.sendTask(jmsTemplate, queue, task,JobPriority.HIGHER.getValue());
+//		
+//		}
+//		
+//		long queueSize = ActiveMQUtils.getQueueSize(jmsTemplate, "192.168.101.59:7000:distributeTaskQueue");
+//		System.out.println(queueSize);
+//	}
 	
 
 	
+//	@Test
+//	public void getQueueSize()
+//	{
+//		long queueSize = ActiveMQUtils.getQueueSize(jmsTemplate, "192.168.101.51:7000:distributeTaskQueue");
+//		System.out.println(queueSize);
+//		
+////		long queueSize1 = ActiveMQUtils.getQueueSize(jmsTemplate, "test1");
+////		System.out.println(queueSize1);
+//		
+//
+//	}
+//	
 	@Test
-	public void getQueueSize()
+	public void receiveTask()
 	{
-		System.out.println(jmsTemplate.hashCode());
-		
-		long queueSize = ActiveMQUtils.getQueueSize(jmsTemplate, "test");
-		System.out.println(queueSize);
-		
-//		long queueSize1 = ActiveMQUtils.getQueueSize(jmsTemplate, "test1");
-//		System.out.println(queueSize1);
-		
+		Task receiveTask;
 		jmsTemplate = (JmsTemplate) applicationContext.getBean("jmsTemplate");
 		
-		System.out.println(jmsTemplate.hashCode());
-		
-		Task receiveTask;
 		try {
+			System.out.println(queue);
 			receiveTask = ActiveMQUtils.receiveTask(jmsTemplate, queue);
 			System.out.println(receiveTask.toString());
 		} catch (JMSException e) {

@@ -112,13 +112,13 @@ public class ProcessResult {
 
 	private String getResult()
 	{
-		if(processFlagSet.get(1))
-		{
-			return "interrupt";
-		}
-		else if(processFlagSet.get(2))
+		if(processFlagSet.get(2))
 		{
 			return "timeout";
+		}
+		else if(processFlagSet.get(1))
+		{
+			return "interrupt";
 		}
 		else
 		{

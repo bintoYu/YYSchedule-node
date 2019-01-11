@@ -1155,3 +1155,84 @@ Caused by: java.net.BindException: Address already in use: JVM_Bind
 	at java.net.ServerSocket.bind(ServerSocket.java:376)
 	at org.apache.thrift.transport.TServerSocket.<init>(TServerSocket.java:106)
 	... 6 more
+1630  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1632  - Failed to register node [ 192.168.2.91:7000 ] : null
+1621  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1622  - Failed to register node [ 192.168.2.91:7000 ] : null
+12751 - Failed to register node [ 192.168.2.91:7000 ] : Remote host unreachable.
+2153  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+2174  - Failed to register node [ 192.168.2.91:7000 ] : null
+2758  - 从队列192.168.2.91:7000:distributeTaskQueue中获取Task失败！
+1887  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1889  - Failed to register node [ 192.168.2.91:7000 ] : null
+1893  - Failed to register node [ 192.168.2.91:7000 ] to master [ 192.168.2.91:6010 ]
+1896  - Failed to register node [ 192.168.2.91:7000 ] : null
+2030  - Failed to register node [ 192.168.2.92:7000 ] to master [ 192.168.2.91:6010 ]
+2033  - Failed to register node [ 192.168.2.92:7000 ] : null
+2652  - Exception encountered during context initialization - cancelling refresh attempt
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'TaskConsumer' defined in file [D:\ybt\workspace-pc\YYSchedule-node\target\classes\com\YYSchedule\node\consumer\TaskConsumer.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.consumer.TaskConsumer]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.YYSchedule.store.ftp cannot be resolved
+	FtpConnFactory cannot be resolved to a type
+	FtpConnFactory cannot be resolved to a type
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1093)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1038)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:762)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:83)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<init>(ApplicationContextHandler.java:8)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<clinit>(ApplicationContextHandler.java:14)
+	at com.YYSchedule.node.test.ActivemqTest.init(ActivemqTest.java:36)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.consumer.TaskConsumer]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.YYSchedule.store.ftp cannot be resolved
+	FtpConnFactory cannot be resolved to a type
+	FtpConnFactory cannot be resolved to a type
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:163)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1086)
+	... 38 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The import com.YYSchedule.store.ftp cannot be resolved
+	FtpConnFactory cannot be resolved to a type
+	FtpConnFactory cannot be resolved to a type
+
+	at com.YYSchedule.node.consumer.TaskConsumer.<init>(TaskConsumer.java:12)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:147)
+	... 40 more
+2725883 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
