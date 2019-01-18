@@ -28,6 +28,7 @@ import com.YYSchedule.common.utils.RpcUtils;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
 import com.YYSchedule.node.mapper.EngineLoggerMapper;
+import com.YYSchedule.node.queue.TaskWaitingQueue;
 import com.YYSchedule.store.util.ActiveMQUtils;
 /**
  * 
@@ -46,6 +47,9 @@ public class HeartBeatDetector implements Runnable {
 	
 	@Autowired
 	private JmsTemplate jmsTemplate;
+	
+	@Autowired
+	private TaskWaitingQueue taskQueue;
 
 	
 	/**
@@ -103,16 +107,15 @@ public class HeartBeatDetector implements Runnable {
 	public NodePayload generateHeartBeat() {
 		NodePayload nodePayload = new NodePayload();
 		String nodeId = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port();
-		String distributeTaskQueue = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port() + ":" + "distributeTaskQueue";
 		
 		// init payload id info
 		nodePayload.setNodeId(nodeId);
 		
 		nodePayload.setNodeRuntime(getNodeRuntime());
 		nodePayload.setQueueLimit(config.getMax_queue_size());
-		nodePayload.setQueueLength(ActiveMQUtils.getQueueSize(jmsTemplate, distributeTaskQueue));
+		nodePayload.setQueueLength(taskQueue.size());
 		nodePayload.setTaskPhase(TaskPhase.valueOf(config.getTask_phase()));
-		nodePayload.setConsumerThreadNum(config.getTask_consumer_thread_num());
+		nodePayload.setExecutorNum(config.getExecutor_num());
 		
 		//存放当前正在执行引擎的日志信息
 		ApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();

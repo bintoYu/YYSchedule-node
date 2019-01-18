@@ -36,8 +36,11 @@ public class Config
 	@Value("#{config.max_queue_size}")
 	private int max_queue_size;
 	
-	@Value("#{config.task_consumer_thread_num}")
-	private int task_consumer_thread_num;
+	@Value("#{config.task_consumer_num}")
+	private int task_consumer_num;
+	
+	@Value("#{config.executor_num}")
+	private int executor_num;
 	
 	@Value("#{config.activemq_url}")
 	private String activemq_url;
@@ -92,9 +95,14 @@ public class Config
 		return max_queue_size;
 	}
 
-	public int getTask_consumer_thread_num()
+	public int getTask_consumer_num()
 	{
-		return task_consumer_thread_num;
+		return task_consumer_num;
+	}
+
+	public int getExecutor_num()
+	{
+		return executor_num;
 	}
 
 	public String getActivemq_url()

@@ -24,8 +24,9 @@ import com.YYSchedule.common.rpc.service.task.NodeCallTaskService;
 import com.YYSchedule.common.utils.RpcUtils;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
-import com.YYSchedule.node.consumer.TaskConsumer;
 import com.YYSchedule.node.detector.HeartBeatDetector;
+import com.YYSchedule.node.executor.TaskConsumerPool;
+import com.YYSchedule.node.executor.TaskExecutorPool;
 import com.YYSchedule.node.service.impl.EngineCallNodeServiceImpl;
 
 /**
@@ -88,14 +89,15 @@ public class StartUp
 		}
 	}
 	
-	private void reportHeartBeat()
-	{
-		new ClassPathXmlApplicationContext("classpath:spring/quartz.xml","classpath:spring/applicationContext-activemq.xml","classpath:spring/applicationContext-component.xml");
-	}
+//	private void reportHeartBeat()
+//	{
+//		new ClassPathXmlApplicationContext("classpath:spring/quartz.xml","classpath:spring/applicationContext-activemq.xml","classpath:spring/applicationContext-component.xml");
+//	}
 	
 	private void startConsumer(AbstractApplicationContext applicationContext)
 	{
-		applicationContext.getBean(TaskConsumer.class).startThreadPool();
+		applicationContext.getBean(TaskConsumerPool.class).startThreadPool();
+		applicationContext.getBean(TaskExecutorPool.class).startThreadPool();
 	}
 	
 	private void startEngineCallNodeService()
@@ -133,7 +135,7 @@ public class StartUp
 		StartUp startUp = new StartUp(applicationContext);
 		
 		startUp.registerNode();
-		startUp.reportHeartBeat();
+//		startUp.reportHeartBeat();
 		startUp.startConsumer(applicationContext);
 		startUp.startEngineCallNodeService();
 	}

@@ -17,11 +17,18 @@ import org.springframework.stereotype.Component;
 
 import com.YYSchedule.common.pojo.Task;
 
+/**
+ * 
+ * @author ybt
+ *
+ * @date 2019年1月11日  
+ * @version 1.0
+ */
 @Component
 @Scope("singleton")
-public class TaskQueue
+public class TaskWaitingQueue
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(TaskQueue.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TaskWaitingQueue.class);
 	
 	@Value("#{config.max_queue_size}")
 	private int MAX_QUEUE_SIZE;
@@ -34,25 +41,24 @@ public class TaskQueue
 		return taskQueue;
 	}
 	
-	public synchronized void addToTaskQueue(Task task)
+	public synchronized boolean addToTaskQueue(Task task)
 	{
+		boolean isAdded = false;
 		if(task == null)
 		{
-			return ;
+			return false;
 		}
 		
 		if (taskQueue.size() <= MAX_QUEUE_SIZE - 2)
 		{
-			boolean isAdded = taskQueue.add(task);
-			if (isAdded)
-			{
-				LOGGER.info("成功更新TaskQueue, size : [ " + taskQueue.size() + " ].");
-			}
+			isAdded = taskQueue.add(task);
 		}
 		else
 		{
 			LOGGER.error("TaskQueue超过最大容量, size : [ " + taskQueue.size() + " ].");
 		}
+		
+		return isAdded;
 	}
 	
 	public synchronized void addToTaskQueue(Set<Task> taskSet)
@@ -84,6 +90,11 @@ public class TaskQueue
 			taskIdList.add(task.getTaskId());
 		}
 		return taskIdList;
+	}
+	
+	public synchronized int size()
+	{
+		return taskQueue.size();
 	}
 	
 	public Task takeTask()

@@ -1236,3 +1236,50 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:147)
 	... 40 more
 2725883 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+2190  - 无法将task [ 1000034010002 ]更新为BEFORE_RUN: null
+org.apache.thrift.transport.TTransportException
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:424)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:321)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:225)
+	at org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:77)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.recv_reportTaskExecutionStatus(NodeCallTaskService.java:165)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.reportTaskExecutionStatus(NodeCallTaskService.java:149)
+	at com.YYSchedule.node.consumer.TaskExecutor.reportTaskStatus(TaskExecutor.java:200)
+	at com.YYSchedule.node.consumer.TaskExecutor.run(TaskExecutor.java:105)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+2146  - 无法将task [ 1000035010001 ]更新为BEFORE_RUN: null
+org.apache.thrift.transport.TTransportException
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:424)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:321)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:225)
+	at org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:77)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.recv_reportTaskExecutionStatus(NodeCallTaskService.java:165)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.reportTaskExecutionStatus(NodeCallTaskService.java:149)
+	at com.YYSchedule.node.consumer.TaskExecutor.reportTaskStatus(TaskExecutor.java:200)
+	at com.YYSchedule.node.consumer.TaskExecutor.run(TaskExecutor.java:105)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+2118  - 无法将task [ 1000035010002 ]更新为BEFORE_RUN: null
+org.apache.thrift.transport.TTransportException
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:424)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:321)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:225)
+	at org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:77)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.recv_reportTaskExecutionStatus(NodeCallTaskService.java:165)
+	at com.YYSchedule.common.rpc.service.task.NodeCallTaskService$Client.reportTaskExecutionStatus(NodeCallTaskService.java:149)
+	at com.YYSchedule.node.consumer.TaskExecutor.reportTaskStatus(TaskExecutor.java:200)
+	at com.YYSchedule.node.consumer.TaskExecutor.run(TaskExecutor.java:105)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+17661 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+10609 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect

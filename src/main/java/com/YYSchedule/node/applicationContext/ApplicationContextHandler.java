@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContextHandler
 {
-	private AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
+	private AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/quartz.xml","classpath:spring/applicationContext-*.xml");
 	
 	private ApplicationContextHandler(){
 		
