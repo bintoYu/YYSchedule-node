@@ -113,7 +113,7 @@ public class HeartBeatDetector implements Runnable {
 		
 		nodePayload.setNodeRuntime(getNodeRuntime());
 		nodePayload.setQueueLimit(config.getMax_queue_size());
-		nodePayload.setQueueLength(taskQueue.size());
+		nodePayload.setQueueLength(taskQueue.size() + ActiveMQUtils.getQueueSize(jmsTemplate, nodeId + ":" + "distributeTaskQueue"));
 		nodePayload.setTaskPhase(TaskPhase.valueOf(config.getTask_phase()));
 		nodePayload.setExecutorNum(config.getExecutor_num());
 		

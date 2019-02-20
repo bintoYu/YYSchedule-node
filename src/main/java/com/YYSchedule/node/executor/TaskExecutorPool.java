@@ -28,6 +28,9 @@ public class TaskExecutorPool
 	private FtpConnFactory ftpConnFactory;
 	
 	@Autowired
+	private JmsTemplate jmsTemplate;
+	
+	@Autowired
 	private ThreadPoolTaskExecutor threadPoolExecutor;
 	
 	@Autowired
@@ -39,7 +42,7 @@ public class TaskExecutorPool
 		
 		for(int i = 0; i < executor_num; i++)
 		{
-			TaskExecutor taskExecutor = new TaskExecutor(config, ftpConnFactory, taskQueue);
+			TaskExecutor taskExecutor = new TaskExecutor(config, ftpConnFactory, taskQueue,jmsTemplate);
 			threadPoolExecutor.execute(taskExecutor);
 		}
 	}

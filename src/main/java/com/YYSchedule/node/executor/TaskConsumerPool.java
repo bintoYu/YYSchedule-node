@@ -28,10 +28,14 @@ public class TaskConsumerPool
 	private FtpConnFactory ftpConnFactory;
 	
 	@Autowired
+	private JmsTemplate jmsTemplate;
+	
+	@Autowired
 	private ThreadPoolTaskExecutor threadPoolExecutor;
 	
 	@Autowired
 	private TaskWaitingQueue taskQueue;
+	
 	
 	public void startThreadPool()
 	{
@@ -39,7 +43,7 @@ public class TaskConsumerPool
 		
 		for(int i = 0; i < task_consumer_thread_num; i++)
 		{
-			TaskConsumer taskConsumerThread = new TaskConsumer(config, taskQueue);
+			TaskConsumer taskConsumerThread = new TaskConsumer(config, taskQueue,jmsTemplate);
 			threadPoolExecutor.execute(taskConsumerThread);
 		}
 	}

@@ -7,16 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import javax.jms.Connection;
-import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.thrift.protocol.TProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jms.JmsException;
 import org.springframework.jms.core.JmsTemplate;
 
 import com.YYSchedule.common.pojo.Result;
@@ -30,8 +25,7 @@ import com.YYSchedule.node.process.ProcessResult;
 import com.YYSchedule.node.queue.TaskWaitingQueue;
 import com.YYSchedule.store.ftp.FtpConnFactory;
 import com.YYSchedule.store.ftp.FtpUtils;
-import com.YYSchedule.store.util.ActiveMQUtils_nospring;
-import com.YYSchedule.store.util.QueueConnectionFactory;
+import com.YYSchedule.store.util.ActiveMQUtils;
 
 /**
  * @author ybt
@@ -49,12 +43,14 @@ public class TaskExecutor implements Runnable
 	
 	private Config config;
 	
+	private JmsTemplate jmsTemplate;
+	
 	//activemq
-	private Connection activemqConnection;
-	
-	private Session activemqSession;
-	
-	private MessageProducer resultProducer;
+//	private Connection activemqConnection;
+//	
+//	private Session activemqSession;
+//	
+//	private MessageProducer resultProducer;
 	
 	private String resultQueue;
 	
@@ -63,17 +59,18 @@ public class TaskExecutor implements Runnable
 	 * @param distributeTaskQueue
 	 * @param jmsTemplate
 	 */
-	public TaskExecutor(Config config, FtpConnFactory ftpConnFactory,TaskWaitingQueue taskQueue)
+	public TaskExecutor(Config config, FtpConnFactory ftpConnFactory,TaskWaitingQueue taskQueue,JmsTemplate jmsTemplate)
 	{
 		super();
 		this.config = config;
 		this.ftpConnFactory = ftpConnFactory;
 		this.taskQueue = taskQueue;
+		this.jmsTemplate = jmsTemplate;
 		this.nodeId = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port();
 		this.resultQueue = config.getTaskmanager_listener_domain() + ":" + "resultQueue"; 
-		this.activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
-		this.activemqSession = QueueConnectionFactory.createSession(activemqConnection);
-		this.resultProducer = QueueConnectionFactory.createProducer(activemqSession, resultQueue);
+//		this.activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
+//		this.activemqSession = QueueConnectionFactory.createSession(activemqConnection);
+//		this.resultProducer = QueueConnectionFactory.createProducer(activemqSession, resultQueue);
 	}
 	
 	@Override
@@ -207,10 +204,10 @@ public class TaskExecutor implements Runnable
 		 
 		try
 		{
-//			ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
-			ActiveMQUtils_nospring.sendResult(resultPojo, activemqSession, resultProducer, resultQueue);
+			ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
+//			ActiveMQUtils_nospring.sendResult(resultPojo, activemqSession, resultProducer, resultQueue);
 		}
-		catch(JMSException jmsException)
+		catch(JmsException jmsException)
 		{
 			LOGGER.error("失败信息 [ " + taskId + " ] 放入队列resultQueue失败！" + jmsException.getMessage());
 		}

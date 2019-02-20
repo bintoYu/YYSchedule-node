@@ -1283,3 +1283,55 @@ org.apache.thrift.transport.TTransportException
 	at java.lang.Thread.run(Thread.java:744)
 17661 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
 10609 - Transport (tcp://192.168.1.184:61616) failed, reason:  java.io.EOFException, attempting to automatically reconnect
+562   - Exception encountered during context initialization - cancelling refresh attempt
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'HeartBeatDetector': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.YYSchedule.node.queue.TaskWaitingQueue com.YYSchedule.node.detector.HeartBeatDetector.taskQueue; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'taskWaitingQueue' defined in file [D:\ybt\workspace-pc\YYSchedule-node\target\classes\com\YYSchedule\node\queue\TaskWaitingQueue.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.queue.TaskWaitingQueue]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1202)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:762)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:139)
+	at org.springframework.context.support.ClassPathXmlApplicationContext.<init>(ClassPathXmlApplicationContext.java:93)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<init>(ApplicationContextHandler.java:8)
+	at com.YYSchedule.node.applicationContext.ApplicationContextHandler.<clinit>(ApplicationContextHandler.java:14)
+	at com.YYSchedule.node.start.StartUp.main(StartUp.java:134)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.YYSchedule.node.queue.TaskWaitingQueue com.YYSchedule.node.detector.HeartBeatDetector.taskQueue; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'taskWaitingQueue' defined in file [D:\ybt\workspace-pc\YYSchedule-node\target\classes\com\YYSchedule\node\queue\TaskWaitingQueue.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.queue.TaskWaitingQueue]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:558)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:87)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 15 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'taskWaitingQueue' defined in file [D:\ybt\workspace-pc\YYSchedule-node\target\classes\com\YYSchedule\node\queue\TaskWaitingQueue.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.queue.TaskWaitingQueue]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1093)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1038)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:298)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1127)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1051)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:949)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:530)
+	... 17 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.YYSchedule.node.queue.TaskWaitingQueue]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:163)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1086)
+	... 28 more
+Caused by: java.lang.IllegalArgumentException
+	at java.util.concurrent.PriorityBlockingQueue.<init>(PriorityBlockingQueue.java:211)
+	at java.util.concurrent.PriorityBlockingQueue.<init>(PriorityBlockingQueue.java:193)
+	at com.YYSchedule.node.queue.TaskWaitingQueue.<init>(TaskWaitingQueue.java:36)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:147)
+	... 30 more

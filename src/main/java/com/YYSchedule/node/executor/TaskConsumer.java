@@ -3,35 +3,20 @@
  */
 package com.YYSchedule.node.executor;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
-import javax.jms.Connection;
 import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
 
-import org.apache.commons.net.ftp.FTPClient;
 import org.apache.thrift.protocol.TProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
-import com.YYSchedule.common.pojo.Result;
 import com.YYSchedule.common.pojo.Task;
 import com.YYSchedule.common.rpc.domain.task.TaskStatus;
 import com.YYSchedule.common.rpc.service.task.NodeCallTaskService;
 import com.YYSchedule.common.utils.RpcUtils;
-import com.YYSchedule.node.command.CommandHandler;
 import com.YYSchedule.node.config.Config;
-import com.YYSchedule.node.process.ProcessResult;
 import com.YYSchedule.node.queue.TaskWaitingQueue;
-import com.YYSchedule.store.ftp.FtpConnFactory;
-import com.YYSchedule.store.ftp.FtpUtils;
-import com.YYSchedule.store.util.ActiveMQUtils_nospring;
-import com.YYSchedule.store.util.QueueConnectionFactory;
+import com.YYSchedule.store.util.ActiveMQUtils;
 
 /**
  * @author ybt
@@ -47,12 +32,14 @@ public class TaskConsumer implements Runnable
 	
 	private Config config;
 	
+	private JmsTemplate jmsTemplate;
+	
 	//activemq
-	private Connection activemqConnection;
-	
-	private Session activemqSession;
-	
-	private MessageConsumer taskConsumer;
+//	private Connection activemqConnection;
+//	
+//	private Session activemqSession;
+//	
+//	private MessageConsumer taskConsumer;
 	
 	private String distributeTaskQueue;
 	
@@ -61,16 +48,17 @@ public class TaskConsumer implements Runnable
 	 * @param distributeTaskQueue
 	 * @param jmsTemplate
 	 */
-	public TaskConsumer(Config config, TaskWaitingQueue taskQueue)
+	public TaskConsumer(Config config, TaskWaitingQueue taskQueue,JmsTemplate jmsTemplate)
 	{
 		super();
 		this.config = config;
 		this.taskQueue = taskQueue;
+		this.jmsTemplate = jmsTemplate;
 		this.nodeId = config.getLocal_listener_domain() + ":" + config.getTask_call_node_port();
 		this.distributeTaskQueue = nodeId + ":" + "distributeTaskQueue";
-		this.activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
-		this.activemqSession = QueueConnectionFactory.createSession(activemqConnection);
-		this.taskConsumer = QueueConnectionFactory.createConsumer(activemqSession, distributeTaskQueue);
+//		this.activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
+//		this.activemqSession = QueueConnectionFactory.createSession(activemqConnection);
+//		this.taskConsumer = QueueConnectionFactory.createConsumer(activemqSession, distributeTaskQueue);
 	}
 	
 	@Override
@@ -83,8 +71,8 @@ public class TaskConsumer implements Runnable
 			Task task = null;
 			try {
 				// 从队列distributeTaskQueue取出task
-//				task = ActiveMQUtils.receiveTask(jmsTemplate, distributeTaskQueue);
-				task = ActiveMQUtils_nospring.receiveTask(taskConsumer, distributeTaskQueue);
+				task = ActiveMQUtils.receiveTask(jmsTemplate, distributeTaskQueue);
+//				task = ActiveMQUtils_nospring.receiveTask(taskConsumer, distributeTaskQueue);
 			} catch (JMSException e) {
 				task.setTaskStatus(TaskStatus.ACCEPT_FAILED);
 				LOGGER.error("Task [ " + task.getTaskId() + " ] --> " + distributeTaskQueue + " fail!" + e.getMessage());
@@ -94,12 +82,10 @@ public class TaskConsumer implements Runnable
 				task.setTaskStatus(TaskStatus.ACCEPTED);
 				
 				//将task发到taskQueue中
-				boolean isAdd = taskQueue.addToTaskQueue(task);
-				if(isAdd)
-				{
-					LOGGER.info("Task [ " + task.getTaskId() + " ] --> taskWaitingQueue size: " + taskQueue.size());
-					task.setTaskStatus(TaskStatus.WAITING);
-				}
+				taskQueue.addToTaskQueue(task);
+
+				LOGGER.info("Task [ " + task.getTaskId() + " ] --> taskWaitingQueue size: " + taskQueue.size());
+				task.setTaskStatus(TaskStatus.WAITING);
 				// 通知taskmanager已接受task
 				reportTaskStatus(task);
 			}

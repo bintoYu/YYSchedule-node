@@ -24,6 +24,10 @@
 			<outputDirectory>conf</outputDirectory>
 		</fileSet>
 		<fileSet>
+			<directory>src/main/logs</directory>
+			<outputDirectory>logs</outputDirectory>
+		</fileSet>
+		<fileSet>
 			<directory>src/main/sigar-lib</directory>
 			<outputDirectory>sigar-lib</outputDirectory>
 		</fileSet>

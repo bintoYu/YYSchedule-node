@@ -6,7 +6,6 @@ package com.YYSchedule.node.service.impl;
 import java.io.File;
 
 import javax.jms.Connection;
-import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 
@@ -14,6 +13,8 @@ import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
 
 import com.YYSchedule.common.pojo.Result;
 import com.YYSchedule.common.rpc.domain.engine.EngineLogger;
@@ -26,7 +27,7 @@ import com.YYSchedule.common.rpc.service.node.EngineCallNodeService;
 import com.YYSchedule.node.applicationContext.ApplicationContextHandler;
 import com.YYSchedule.node.config.Config;
 import com.YYSchedule.node.mapper.EngineLoggerMapper;
-import com.YYSchedule.store.util.ActiveMQUtils_nospring;
+import com.YYSchedule.store.util.ActiveMQUtils;
 import com.YYSchedule.store.util.QueueConnectionFactory;
 
 /**
@@ -44,15 +45,16 @@ public class EngineCallNodeServiceImpl implements EngineCallNodeService.Iface
 	{
 		ApplicationContext applicationContext = ApplicationContextHandler.getInstance().getApplicationContext();
 		Config config = applicationContext.getBean(Config.class);
+		JmsTemplate jmsTemplate = applicationContext.getBean(JmsTemplate.class);
 		EngineLoggerMapper engineLoggerMapper = applicationContext.getBean(EngineLoggerMapper.class);
 		engineLoggerMapper.removeEngineLogger(taskId);
 		
 		//将result封装成结果类发送到resultQueue中
 		String resultQueue = config.getTaskmanager_listener_domain() + ":" + "resultQueue";
 		//activemq
-		Connection activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
-		Session activemqSession = QueueConnectionFactory.createSession(activemqConnection);
-		MessageProducer resultProducer = QueueConnectionFactory.createProducer(activemqSession, resultQueue);;
+//		Connection activemqConnection = QueueConnectionFactory.createActiveMQConnection(config.getActivemq_url());
+//		Session activemqSession = QueueConnectionFactory.createSession(activemqConnection);
+//		MessageProducer resultProducer = QueueConnectionFactory.createProducer(activemqSession, resultQueue);;
 		Result resultPojo = new Result();
 		resultPojo.setTaskId(taskId);
 		resultPojo.setFileName(file.substring(file.lastIndexOf(File.separator)+1));
@@ -65,10 +67,10 @@ public class EngineCallNodeServiceImpl implements EngineCallNodeService.Iface
 		
 		try
 		{
-//			ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
-			ActiveMQUtils_nospring.sendResult(resultPojo, activemqSession, resultProducer, resultQueue);
+			ActiveMQUtils.sendResult(jmsTemplate, resultQueue, resultPojo);
+//			ActiveMQUtils_nospring.sendResult(resultPojo, activemqSession, resultProducer, resultQueue);
 		}
-		catch(JMSException jmsException)
+		catch(JmsException jmsException)
 		{
 			LOGGER.error("result [ " + taskId + " ] 放入队列resultQueue失败！" + jmsException.getMessage());
 			throw new TException("result [ " + taskId + " ] 放入队列resultQueue失败！" + jmsException.getMessage());

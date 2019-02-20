@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,52 +35,28 @@ public class TaskWaitingQueue
 	@Value("#{config.max_queue_size}")
 	private int MAX_QUEUE_SIZE;
 	
-	private PriorityBlockingQueue<Task> taskQueue = new PriorityBlockingQueue<Task>();
+	private LinkedBlockingQueue<Task> taskQueue;
 	
+	@PostConstruct
+	public void init()
+	{
+		taskQueue = new LinkedBlockingQueue<Task>(MAX_QUEUE_SIZE);
+	}
 	
-	public synchronized PriorityBlockingQueue<Task> getTaskQueue()
+	public synchronized LinkedBlockingQueue<Task> getTaskQueue()
 	{
 		return taskQueue;
 	}
 	
-	public synchronized boolean addToTaskQueue(Task task)
+	public void addToTaskQueue(Task task)
 	{
-		boolean isAdded = false;
-		if(task == null)
+		try
 		{
-			return false;
-		}
-		
-		if (taskQueue.size() <= MAX_QUEUE_SIZE - 2)
+			taskQueue.put(task);
+		} catch (InterruptedException e)
 		{
-			isAdded = taskQueue.add(task);
-		}
-		else
-		{
-			LOGGER.error("TaskQueue超过最大容量, size : [ " + taskQueue.size() + " ].");
-		}
-		
-		return isAdded;
-	}
-	
-	public synchronized void addToTaskQueue(Set<Task> taskSet)
-	{
-		if(taskSet.isEmpty())
-		{
-			return ;
-		}
-		
-		if (taskQueue.size() <= MAX_QUEUE_SIZE - taskSet.size() - 1)
-		{
-			boolean isAdded = taskQueue.addAll(taskSet);
-			if (isAdded)
-			{
-				LOGGER.info("成功更新TaskQueue, size : [ " + taskQueue.size() + " ].");
-			}
-		}
-		else
-		{
-			LOGGER.error("TaskQueue超过最大容量, size : [ " + taskQueue.size() + " ].");
+			LOGGER.error("无法将task[" + task.getTaskId() + "] 放入TaskWaitingQueue中！");
+			e.printStackTrace();
 		}
 	}
 	
